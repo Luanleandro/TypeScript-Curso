@@ -22,7 +22,14 @@ class Conta {
   }
 
   protected saque(valor: number) {
-    this.saldoConta -= valor;
+    if (valor <= 0) {
+      console.log('Você não pode sacar nada ou valores negativos.');
+    }
+    if (valor <= this.saldoConta) {
+      this.saldoConta -= valor;
+    } else {
+      console.log('Saldo insuficiente');
+    }
   }
 }
 
@@ -106,4 +113,5 @@ console.log(conta1.saldo());
 conta2.saque(5000);
 console.log(conta2.saldo());
 
-conta2.deposito(52000)
+conta2.deposito(52000);
+conta2.saque(0);
