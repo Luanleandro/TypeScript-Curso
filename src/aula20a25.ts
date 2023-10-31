@@ -14,9 +14,14 @@ class Conta {
     console.log(`Titular: ${this.titular}`);
     console.log(`Conta: ${this.conta}`);
   }
-  saldo() {
-    return `Saldo da conta: R$${this.saldoConta}`;
+  get saldo() {
+    return this.saldoConta;
   }
+
+  set saldo(saldoConta: number) {
+    this.saldoConta = saldoConta;
+  }
+
   protected deposito(valor: number) {
     this.saldoConta += valor;
   }
@@ -102,16 +107,11 @@ conta2.info();
 
 conta1.deposito(500);
 conta1.deposito(2001);
-console.log(conta1.saldo());
-
 conta2.deposito(25000);
-console.log(conta2.saldo());
-
 conta1.saque(250);
-console.log(conta1.saldo());
-
 conta2.saque(5000);
-console.log(conta2.saldo());
-
-conta2.deposito(52000);
 conta2.saque(0);
+
+console.log(conta2.saldo);
+conta2.saldo = 250;
+console.log(conta2.saldo);
